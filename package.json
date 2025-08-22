@@ -1,6 +1,6 @@
 {
   "name": "svg-icon-package",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A dynamic SVG icon package for React with size and fill customization",
   "main": "dist/svg-icon-package.cjs.js",
   "module": "dist/svg-icon-package.es.js",

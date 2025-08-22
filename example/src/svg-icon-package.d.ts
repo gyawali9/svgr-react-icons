@@ -1,1 +1,1 @@
-declare module "svg-icon-package";
+declare module "svgr-react-icons";

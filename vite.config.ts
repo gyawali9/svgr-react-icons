@@ -17,7 +17,7 @@ export default defineConfig({
     lib: {
       entry: "./src/index.ts",
       name: "SvgIconPackage",
-      fileName: "svg-icon-package",
+      fileName: "svgr-react-icons",
       formats: ["es", "cjs"],
     },
     rollupOptions: {

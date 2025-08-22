@@ -1,9 +1,9 @@
 {
-  "name": "svg-icon-package",
+  "name": "svgr-react-icons",
   "version": "1.0.1",
   "description": "A dynamic SVG icon package for React with size and fill customization",
-  "main": "dist/svg-icon-package.cjs.js",
-  "module": "dist/svg-icon-package.es.js",
+  "main": "dist/svgr-react-icons.cjs.js",
+  "module": "dist/svgr-react-icons.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -36,16 +36,21 @@
   },
   "keywords": [
     "react",
-    "svg",
-    "icon",
-    "vite",
+    "react-icons",
+    "svg-icons",
+    "icon-library",
+    "custom-icons",
+    "dynamic-icons",
+    "react-component",
+    "ui-icons",
+    "vite-plugin",
     "svgr"
   ],
   "author": "Roshan Gyawali",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gyawali9/svg-icon-package"
+    "url": "https://github.com/gyawali9/svgr-react-icons"
   },
   "dependencies": {
     "dompurify": "^3.2.6"

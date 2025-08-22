@@ -32,7 +32,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "svg-icon-package": path.resolve(__dirname, "../src"),
+      "svgr-react-icons": path.resolve(__dirname, "../src"),
     },
   },
 });

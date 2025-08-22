@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from "react";
-import { Icon, generateSvgUrl } from "svg-icon-package";
+import { Icon, generateSvgUrl } from "svgr-react-icons";
 import SampleIcon from "./assets/Sample.svg?react";
 import styles from "./App.module.css";
 

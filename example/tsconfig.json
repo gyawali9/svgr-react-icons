@@ -9,7 +9,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "svg-icon-package": ["../src"]
+      "svgr-react-icons": ["../src"]
     }
   },
   "include": ["src/**/*", "src/*.d.ts"],

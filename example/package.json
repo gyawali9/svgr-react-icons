@@ -1,5 +1,5 @@
 {
-  "name": "svg-icon-package-example",
+  "name": "svgr-react-icons-example",
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
@@ -11,7 +11,7 @@
   "dependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "svg-icon-package": "file:.."
+    "svgr-react-icons": "file:.."
   },
   "devDependencies": {
     "@types/node": "^24.3.0",

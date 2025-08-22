@@ -21,7 +21,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "svg-icon-package": "/src",
+      "svgr-react-icons": "/src",
       react: "/node_modules/react",
       "react-dom": "/node_modules/react-dom",
       "react/jsx-dev-runtime": "/node_modules/react/jsx-dev-runtime",

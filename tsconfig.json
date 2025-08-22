@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "types": ["vitest/globals", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "svg-icon-package": ["./src"]
+    }
+  },
+  "include": ["src/**/*", "src/*.d.ts", "vitest.setup.ts"],
+  "exclude": ["node_modules", "dist", "example"]
+}

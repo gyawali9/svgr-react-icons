@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "svg-icon-package": ["../src"]
+    }
+  },
+  "include": ["src/**/*", "src/*.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}

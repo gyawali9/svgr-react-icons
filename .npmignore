@@ -1,0 +1,13 @@
+# Exclude development files
+example/
+src/
+__tests__/
+vitest.config.ts
+vitest.setup.ts
+tsconfig.json
+vite.config.ts
+.git
+.gitignore
+node_modules/
+yarn.lock
+*.tgz

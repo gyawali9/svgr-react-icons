@@ -7,12 +7,11 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
-    "types": ["vitest/globals", "node"],
-    "baseUrl": ".",
-    "paths": {
-      "svgr-react-icons": ["./src"]
-    }
+    "declaration": true,
+    "outDir": "dist",
+    "types": ["vitest/globals", "node", "@testing-library/jest-dom"],
+    "baseUrl": "."
   },
-  "include": ["src/**/*", "src/*.d.ts", "vitest.setup.ts"],
-  "exclude": ["node_modules", "dist", "example"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "example", "vitest.setup.ts"]
 }

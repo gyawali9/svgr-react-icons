@@ -5,11 +5,18 @@
   "main": "dist/svgr-react-icons.cjs.js",
   "module": "dist/svgr-react-icons.es.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/svgr-react-icons.es.js",
+      "require": "./dist/svgr-react-icons.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "vite build",
+    "build": "tsc && vite build",
     "test": "vitest",
     "prepublishOnly": "yarn build"
   },
@@ -38,13 +45,16 @@
     "react",
     "react-icons",
     "svg-icons",
-    "icon-library",
     "custom-icons",
     "dynamic-icons",
     "react-component",
     "ui-icons",
     "vite-plugin",
-    "svgr"
+    "svgr",
+    "typescript",
+    "react19",
+    "esm",
+    "cjs"
   ],
   "author": "Roshan Gyawali",
   "license": "MIT",

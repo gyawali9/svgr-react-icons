@@ -1,7 +1,7 @@
-import { CSSProperties, ComponentType, SVGProps } from "react";
+import { CSSProperties, FC, SVGProps } from "react";
 
-export interface IconProps extends SVGProps<SVGSVGElement> {
-  src: string | ComponentType<SVGProps<SVGSVGElement>>;
+export interface IconProps {
+  src: FC<SVGProps<SVGSVGElement>> | string;
   size?: number;
   fill?: string;
   className?: string;

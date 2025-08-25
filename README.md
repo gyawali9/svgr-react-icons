@@ -1,47 +1,42 @@
 # svgr-react-icons
 
-A simple and lightweight React package for displaying SVG icons with customizable size and color. Easily use SVGs as React components (via SVGR) or load them dynamically from URLs. Perfect for Vite and React projects!
+[![npm](https://img.shields.io/npm/v/svgr-react-icons)](https://www.npmjs.com/package/svgr-react-icons)
+[![downloads](https://img.shields.io/npm/dm/svgr-react-icons)](https://www.npmjs.com/package/svgr-react-icons)
+[![license](https://img.shields.io/npm/l/svgr-react-icons)](https://www.npmjs.com/package/svgr-react-icons)
 
-> **Note:** This package is a continuation of [`svg-icon-package@1.0.1`](https://www.npmjs.com/package/svg-icon-package) and replaces it. The old package is now deprecated; please migrate to `svgr-react-icons"
+A **lightweight and flexible React SVG icon library** with customizable size and color. Import SVGs directly as React components (via SVGR) or load them dynamically from URLs. Works seamlessly with **Vite, Next.js, CRA, and Node.js** thanks to dual ESM + CJS outputs.
 
-## Why Use This Package?
+> **Note:** This package replaces [`svg-icon-package@1.0.1`](https://www.npmjs.com/package/svg-icon-package). The old package is now deprecated. Please migrate to `svgr-react-icons`.
 
-- **Customizable Icons**: Adjust size and fill color of SVGs.
-- **Two Ways to Use**: Import SVGs as React components or load them from URLs.
-- **Secure**: Sanitizes SVG content using `dompurify`.
-- **Lightweight**: Minimal dependencies, optimized for Vite.
+---
 
-## Prerequisites
+## ✨ Features
 
-Before using `svgr-react-icons`, ensure you have:
+- 🎨 **Customizable** — control icon size and fill color
+- ⚡ **Dual usage** — import as React components or load from URLs
+- 🔒 **Safe by default** — sanitizes SVGs with `dompurify`
+- 📦 **Compatible everywhere** — ships **ESM** (`import`) and **CJS** (`require`)
 
-- Node.js (version 16 or higher)
-- React (version 18 or 19)
-- A Vite-based React project
-- An SVG file to use as an icon
+---
 
-## Installation
-
-Install the package and required dependencies:
+## 📦 Installation
 
 ```bash
 yarn add svgr-react-icons dompurify
 yarn add --dev vite-plugin-svgr
 ```
 
-- `svgr-react-icons`: The main package.
-- `dompurify`: Ensures safe SVG rendering.
-- `vite-plugin-svgr`: Enables importing SVGs as React components.
+- `svgr-react-icons` → the icon library
+- `dompurify` → sanitizes dynamic SVGs
+- `vite-plugin-svgr` → enables importing SVGs as React components
 
-## Quick Start
+---
 
-Follow these steps to use `svgr-react-icons` in your Vite React project.
+## 🚀 Quick Start
 
-### Step 1: Configure Vite
+### 1. Configure Vite
 
-To use SVGs as React components, add `vite-plugin-svgr` to your Vite configuration.
-
-Create or update `vite.config.ts` in your project root:
+`vite.config.ts`
 
 ```ts
 import { defineConfig } from "vite";
@@ -52,156 +47,108 @@ export default defineConfig({
   plugins: [
     react(),
     svgr({
-      svgrOptions: {
-        icon: true,
-        exportType: "default",
-      },
+      svgrOptions: { icon: true, exportType: "default" },
       include: "**/*.svg?react",
     }),
   ],
 });
 ```
 
-### Step 2: Add an SVG File
+### 2. Add an SVG file
 
-Create an SVG file in your project (e.g., `src/assets/my-icon.svg`):
+`src/assets/my-icon.svg`
 
 ```xml
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+  <circle cx="12" cy="12" r="10" />
 </svg>
 ```
 
-This SVG displays a simple circle and will be used in the examples below.
+---
 
-### Step 3: Use the Icon Component
+## 🔧 Usage Examples
 
-The `svgr-react-icons` provides an `Icon` component and a `generateSvgUrl` utility. Here are two ways to use it.
-
-#### Example 1: Using an SVG as a React Component (SVGR)
-
-Import your SVG as a React component and render it with the `Icon` component.
+### Example 1 — Importing SVGs as React Components (SVGR)
 
 ```tsx
 import React from "react";
-import { Icon } from "svgr-react-icons";
+import { Icon } from "svgr-react-icons"; // ESM import
 import MyIcon from "./assets/my-icon.svg?react";
 
-function App() {
-  return (
-    <div>
-      <h1>My SVG Icon</h1>
-      <Icon src={MyIcon} size={32} fill="blue" alt="Blue Circle Icon" />
-    </div>
-  );
+export default function App() {
+  return <Icon src={MyIcon} size={32} fill="blue" alt="Blue Circle" />;
 }
-
-export default App;
 ```
 
-- **What it does**: Renders the SVG as a React component with a size of 32px and a blue fill color.
-- **Output**: A blue circle icon, 32x32 pixels.
+📦 **CommonJS alternative (Node / Jest / older setups)**:
 
-#### Example 2: Loading an SVG from a URL
+```js
+const { Icon } = require("svgr-react-icons");
+const MyIcon = require("./assets/my-icon.svg?react");
 
-Use `generateSvgUrl` to create a URL with size and color parameters, then render it dynamically.
+function App() {
+  return <Icon src={MyIcon} size={32} fill="blue" alt="Blue Circle" />;
+}
+```
+
+---
+
+### Example 2 — Loading SVGs from a URL
 
 ```tsx
 import React from "react";
 import { Icon, generateSvgUrl } from "svgr-react-icons";
 
-function App() {
+export default function App() {
   return (
-    <div>
-      <h1>My SVG Icon from URL</h1>
-      <Icon
-        src={generateSvgUrl("/assets/my-icon.svg", { size: 48, fill: "red" })}
-        size={48}
-        fill="red"
-        isUrl
-        alt="Red Circle Icon"
-      />
-    </div>
+    <Icon
+      src={generateSvgUrl("/assets/my-icon.svg", { size: 48, fill: "red" })}
+      size={48}
+      fill="red"
+      isUrl
+      alt="Red Circle"
+    />
   );
 }
-
-export default App;
 ```
 
-- **What it does**: Loads the SVG from a URL with query parameters (`?size=48&fill=red`) and renders it with a red fill color and 48px size.
-- **Output**: A red circle icon, 48x48 pixels.
+---
 
-### Icon Component Props
-
-The `Icon` component accepts the following props:
+## 📑 Icon Component Props
 
 | Prop    | Type                              | Description                            | Default |
 | ------- | --------------------------------- | -------------------------------------- | ------- |
-| `src`   | `React.ComponentType` or `string` | SVG component (SVGR) or URL string     | -       |
-| `size`  | `number`                          | Icon size in pixels (width and height) | 24      |
-| `fill`  | `string`                          | Fill color (e.g., `blue`, `#ff0000`)   | -       |
+| `src`   | `React.ComponentType` or `string` | SVG component (SVGR) or URL string     | —       |
+| `size`  | `number`                          | Icon size in pixels (width and height) | `24`    |
+| `fill`  | `string`                          | Fill color (e.g., `blue`, `#ff0000`)   | —       |
 | `isUrl` | `boolean`                         | Set to `true` for URL-based SVGs       | `false` |
-| `alt`   | `string`                          | Accessibility alt text                 | -       |
+| `alt`   | `string`                          | Accessibility alt text                 | —       |
 
-## Try It Out
+---
 
-To see the package in action:
+## 🛠 Development & Contributing
 
-1. Create a new Vite React project:
-   ```bash
-   yarn create vite my-app --template react-ts
-   cd my-app
-   yarn install
-   ```
-2. Install dependencies:
-   ```bash
-   yarn add svgr-react-icons dompurify
-   yarn add --dev vite-plugin-svgr
-   ```
-3. Follow the setup and examples above.
-4. Run the app:
-   ```bash
-   yarn dev
-   ```
-   - Open `http://localhost:5173` to see your icons.
+Clone and run locally:
 
-## Development
+```bash
+git clone https://github.com/gyawali9/svgr-react-icons.git
+cd svgr-react-icons
+yarn install
+yarn build
+yarn test
+```
 
-To contribute or test locally:
+Run example app:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/gyawali9/svgr-react-icons.git
-   cd svgr-react-icons
-   ```
-2. Install dependencies:
-   ```bash
-   yarn install
-   ```
-3. Run the example app:
-   ```bash
-   cd example
-   yarn dev
-   ```
-   - Open `http://localhost:3000` to see the demo.
-4. Run tests:
-   ```bash
-   yarn test
-   ```
+```bash
+cd example
+yarn dev
+```
 
-## Contributing
+Open <http://localhost:5173>
 
-We welcome contributions! Please:
+---
 
-- Open an issue at `https://github.com/gyawali9/svgr-react-icons/issues`.
-- Submit a pull request with your changes.
+## 📜 License
 
-## License
-
-MIT License. See [LICENSE](LICENSE) for details.
-
-## Links
-
-- npm: https://www.npmjs.com/package/svgr-react-icons
-- GitHub: https://github.com/gyawali9/svgr-react-icons
-- Author: Roshan Gyawali (gyawali9)
+[MIT](./LICENSE) © 2025 [Roshan Gyawali](https://github.com/gyawali9)

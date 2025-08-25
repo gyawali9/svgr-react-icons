@@ -28,7 +28,6 @@ const Icon: React.FC<IconProps> = ({
           return response.text();
         })
         .then((data) => {
-          // Replace fill attribute in SVG content
           let modifiedData = DOMPurify.sanitize(data);
           if (fill && fill !== "currentColor") {
             modifiedData = modifiedData.replace(
@@ -68,8 +67,7 @@ const Icon: React.FC<IconProps> = ({
     );
   }
 
-  if (typeof src === "function") {
-    // SVGR-generated component
+  if (typeof src !== "string") {
     const SvgComponent = src;
     return (
       <SvgComponent
@@ -81,8 +79,8 @@ const Icon: React.FC<IconProps> = ({
       />
     );
   }
-  console.log("Icon is rendering");
 
+  console.log("Icon is rendering");
   return null;
 };
 

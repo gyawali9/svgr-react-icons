@@ -34,7 +34,9 @@ yarn add --dev vite-plugin-svgr
 
 ## 🚀 Quick Start
 
-### 1. Configure Vite
+## 1. Configure Vite / Next.js
+
+### Configure Vite
 
 `vite.config.ts`
 
@@ -52,6 +54,25 @@ export default defineConfig({
     }),
   ],
 });
+```
+
+### Configure Next.js
+
+`next.config.ts`
+
+```ts
+import type { NextConfig } from "next";
+const nextConfig: NextConfig = {
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: /\.[jt]sx?$/,
+      use: ["@svgr/webpack"],
+    });
+    return config;
+  },
+};
+export default nextConfig;
 ```
 
 ### 2. Add an SVG file
@@ -102,7 +123,7 @@ import { Icon, generateSvgUrl } from "svgr-react-icons";
 export default function App() {
   return (
     <Icon
-      src={generateSvgUrl("/assets/my-icon.svg", { size: 48, fill: "red" })}
+      src={generateSvgUrl("/assets/my-icon.svg")}
       size={48}
       fill="red"
       isUrl

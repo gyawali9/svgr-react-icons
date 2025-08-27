@@ -4,7 +4,7 @@ import { IconProps } from "../types";
 
 const Icon: React.FC<IconProps> = ({
   src,
-  size,
+  size = 24,
   fill = "currentColor",
   className,
   style,
@@ -19,8 +19,9 @@ const Icon: React.FC<IconProps> = ({
   // Handle URL-based SVGs
   useEffect(() => {
     if (isUrl && typeof src === "string") {
-      console.log("Fetching SVG from:", src);
-      fetch(src)
+      const fetchUrl = `${src}?t=${Date.now()}`; // Cache-busting query
+      console.log("Fetching SVG from:", fetchUrl);
+      fetch(fetchUrl, { cache: "no-store" })
         .then((response) => {
           console.log("Fetch response:", response.ok, response.status);
           if (!response.ok)
@@ -29,13 +30,26 @@ const Icon: React.FC<IconProps> = ({
         })
         .then((data) => {
           let modifiedData = DOMPurify.sanitize(data);
+          // Apply fill to SVG
           if (fill && fill !== "currentColor") {
-            modifiedData = modifiedData.replace(
-              /fill="[^"]*"/g,
-              `fill="${fill}"`
-            );
+            if (modifiedData.includes("fill=")) {
+              modifiedData = modifiedData.replace(
+                /<svg\s+([^>]*)fill="[^"]*"([^>]*)>/i,
+                `<svg $1fill="${fill}"$2>`
+              );
+            } else {
+              modifiedData = modifiedData.replace(
+                /<svg\s+([^>]*)>/i,
+                `<svg $1 fill="${fill}">`
+              );
+            }
           }
-          console.log("Fetched SVG content:", modifiedData);
+          // Apply size to SVG
+          modifiedData = modifiedData.replace(
+            /<svg\s+([^>]*)>/i,
+            `<svg $1 width="${size}" height="${size}">`
+          );
+          console.log("Modified SVG content:", modifiedData);
           setSvgContent(modifiedData);
         })
         .catch((error) => {
@@ -43,25 +57,28 @@ const Icon: React.FC<IconProps> = ({
           setSvgContent(null);
         });
     }
-  }, [src, isUrl, fill]);
+  }, [src, isUrl, fill, size]);
 
-  // Apply size to SVG
+  // Styles for SVG container
   const svgStyle = {
     ...style,
-    width: size ? `${size}px` : undefined,
-    height: size ? `${size}px` : undefined,
+    width: `${size}px`,
+    height: `${size}px`,
     fill,
   };
 
   if (isUrl && svgContent) {
     return (
-      <svg
-        ref={svgRef}
-        className={className}
-        style={svgStyle}
+      <div
+        style={{
+          display: "inline-block",
+          width: `${size}px`,
+          height: `${size}px`,
+        }}
         dangerouslySetInnerHTML={{ __html: svgContent }}
         role={alt ? "img" : undefined}
         aria-label={alt}
+        className={className}
         {...rest}
       />
     );

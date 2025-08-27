@@ -33,20 +33,16 @@ const App: React.FC = () => {
             alt="Sample Icon"
           />
           <div className={styles.descriptionContainer}>
-            <div className={styles.iconTitle}>Sample</div>
-            <div className={styles.iconText}>Icon Demo</div>
+            <div className={styles.iconTitle}>Static</div>
+            <div className={styles.iconText}>React Component (Icon)</div>
           </div>
         </div>
 
         <div className={styles.infoIconsContainer}>
           <Icon
-            src={generateSvgUrl("/assets/Sample.svg", {
-              size: 30,
-              fill: "red",
-            })}
-            size={30}
+            src={generateSvgUrl("/assets/Sample.svg")}
+            size={40}
             fill="red"
-            className={styles.infoIcon}
             isUrl
             alt="Dynamic Icon"
           />

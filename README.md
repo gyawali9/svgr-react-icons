@@ -34,7 +34,7 @@ yarn add --dev vite-plugin-svgr
 
 ## 🚀 Quick Start
 
-## 1. Configure Vite / Next.js
+### 1. Configure Vite / Next.js
 
 ### Configure Vite
 

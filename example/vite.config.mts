@@ -19,8 +19,7 @@ export default defineConfig({
         {
           src: "src/assets/*",
           dest: "assets",
-          transform: (content, filename) => {
-            console.log("Copying:", filename);
+          transform: (content) => {
             return content;
           },
         },

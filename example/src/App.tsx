@@ -20,7 +20,6 @@ class ErrorBoundary extends Component<
 }
 
 const App: React.FC = () => {
-  console.log("App is rendering");
   return (
     <ErrorBoundary>
       <div>

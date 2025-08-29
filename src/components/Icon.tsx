@@ -12,7 +12,6 @@ const Icon: React.FC<IconProps> = ({
   alt,
   ...rest
 }) => {
-  console.log("Icon rendering with src:", src);
   const [svgContent, setSvgContent] = useState<string | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
@@ -20,10 +19,8 @@ const Icon: React.FC<IconProps> = ({
   useEffect(() => {
     if (isUrl && typeof src === "string") {
       const fetchUrl = `${src}?t=${Date.now()}`; // Cache-busting query
-      console.log("Fetching SVG from:", fetchUrl);
       fetch(fetchUrl, { cache: "no-store" })
         .then((response) => {
-          console.log("Fetch response:", response.ok, response.status);
           if (!response.ok)
             throw new Error(`Fetch failed: ${response.statusText}`);
           return response.text();
@@ -49,7 +46,6 @@ const Icon: React.FC<IconProps> = ({
             /<svg\s+([^>]*)>/i,
             `<svg $1 width="${size}" height="${size}">`
           );
-          console.log("Modified SVG content:", modifiedData);
           setSvgContent(modifiedData);
         })
         .catch((error) => {
@@ -97,7 +93,6 @@ const Icon: React.FC<IconProps> = ({
     );
   }
 
-  console.log("Icon is rendering");
   return null;
 };
 
